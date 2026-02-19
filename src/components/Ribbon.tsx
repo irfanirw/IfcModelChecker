@@ -31,7 +31,6 @@ import {
     PlayArrow as ValidateIcon,
     ChevronLeft as ToggleLeftIcon,
     ChevronRight as ToggleRightIcon,
-    ContentCut as SectionIcon,
 } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
 
@@ -41,7 +40,6 @@ import {
     useSelectionStore,
     useVisibilityStore,
     useModelStore,
-    useSectionStore,
 } from '@/store';
 import { useSceneManager } from '@/components/Viewport';
 import type { ViewPreset, ProjectionMode, DisplayMode } from '@/types';
@@ -61,7 +59,6 @@ export default function Ribbon() {
     const selectionStore = useSelectionStore();
     const visibilityStore = useVisibilityStore();
     const modelStore = useModelStore();
-    const sectionStore = useSectionStore();
 
     const handleViewPreset = useCallback((preset: ViewPreset) => {
         viewStore.setPreset(preset);
@@ -265,26 +262,6 @@ export default function Ribbon() {
             <Tooltip title={viewStore.worldAxisVisible ? 'Hide World Axis' : 'Show World Axis'}>
                 <IconButton size="small" onClick={() => viewStore.setWorldAxisVisible(!viewStore.worldAxisVisible)}>
                     <XyzIcon fontSize="small" color={viewStore.worldAxisVisible ? 'primary' : 'inherit'} />
-                </IconButton>
-            </Tooltip>
-
-            {/* Section Tool */}
-            <Tooltip title="Section (Clipping Plane)">
-                <IconButton
-                    size="small"
-                    onClick={() => {
-                        const opening = !sectionStore.panelOpen;
-                        if (!opening) {
-                            // Closing — clear clipping plane & helpers
-                            const tool = (window as any).__sceneManager?.sectionTool;
-                            if (tool) tool.clear();
-                            sectionStore.resetSection();
-                        }
-                        sectionStore.setPanelOpen(opening);
-                    }}
-                    color={sectionStore.panelOpen ? 'primary' : 'default'}
-                >
-                    <SectionIcon fontSize="small" />
                 </IconButton>
             </Tooltip>
 

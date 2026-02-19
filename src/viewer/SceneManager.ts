@@ -8,7 +8,6 @@ import { GRID_DEFAULTS, AXIS_COLORS, CAMERA_PRESETS, SELECTION_COLOR, SELECTION_
 import { useViewStore, useSelectionStore, useVisibilityStore } from '@/store';
 import type { ViewPreset, ProjectionMode, DisplayMode } from '@/types';
 import type { GeometryData } from '@/workers/ifcParser.worker';
-import { SectionTool } from '@/viewer/SectionTool';
 
 export class SceneManager {
     scene: THREE.Scene;
@@ -35,9 +34,6 @@ export class SceneManager {
     private animationFrameId: number | null = null;
     private resizeObserver: ResizeObserver | null = null;
     private disposed = false;
-
-    /** Section tool for clipping planes with gumball & cap fill */
-    sectionTool: SectionTool | null = null;
 
     constructor(container: HTMLElement) {
         this.container = container;
@@ -113,16 +109,6 @@ export class SceneManager {
         // Raycaster
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
-
-        // Section tool (clipping plane with gumball & cap fill)
-        this.sectionTool = new SectionTool({
-            scene: this.scene,
-            camera: this.camera,
-            renderer: this.renderer,
-            orbitControls: this.controls,
-            modelGroup: this.modelGroup,
-            domElement: this.renderer.domElement,
-        });
 
         // Event listeners
         this.renderer.domElement.addEventListener('click', this.onClick);
@@ -435,9 +421,6 @@ export class SceneManager {
         this.controls.object = this.camera;
         this.controls.target.copy(target);
         this.controls.update();
-
-        // Update section tool camera reference for TransformControls
-        if (this.sectionTool) this.sectionTool.updateCamera(this.camera);
     }
 
     setDisplayMode(mode: DisplayMode) {
@@ -738,12 +721,6 @@ export class SceneManager {
 
         this.controls.dispose();
         this.renderer.dispose();
-
-        // Dispose section tool
-        if (this.sectionTool) {
-            this.sectionTool.dispose();
-            this.sectionTool = null;
-        }
 
         // Dispose axis helper renderer
         if (this.axisHelperRenderer) {

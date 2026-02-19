@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Box } from '@mui/material';
 import { SceneManager } from '@/viewer/SceneManager';
 import { useSelectionStore, useViewStore, useVisibilityStore, useModelStore } from '@/store';
-import SectionPanel from '@/components/SectionPanel';
 
 export const ViewportContext = React.createContext<SceneManager | null>(null);
 
@@ -117,9 +116,6 @@ export default function Viewport() {
                 style={{ width: '100%', height: '100%' }}
                 data-testid="viewport-container"
             />
-
-            {/* Section Panel — floating overlay */}
-            <SectionPanel />
 
             {/* Axis Helper — bottom-left corner */}
             <canvas
