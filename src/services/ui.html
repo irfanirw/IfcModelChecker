@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Grand Central Plaza | BIM Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: rgba(19, 127, 236, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 h-screen flex flex-col overflow-hidden">
+<!-- Top Header -->
+<header class="h-16 flex items-center justify-between border-b border-primary/20 bg-background-light dark:bg-background-dark px-4 shrink-0 z-50">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">architecture</span>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">Grand Central Plaza</h2>
+</div>
+<div class="h-6 w-px bg-primary/20"></div>
+<label class="flex items-center bg-primary/10 rounded px-3 h-10 w-80">
+<span class="material-symbols-outlined text-primary/60 mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-primary/40" placeholder="Search GUID/Type/Material..." type="text"/>
+</label>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background-dark"></span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="h-6 w-px bg-primary/20"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-medium text-slate-900 dark:text-white">Alex Morgan</p>
+<p class="text-[10px] text-primary">Lead Architect</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="User profile picture of a professional architect" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVVTRshKPFUTY6U62wwhdmsritnug9Mmg7Ns00sVdMnosPleykbhj-l-PiKenWY1wZUGSwStrid9Cuotfm6jqkpLPramSawLDPgJTzL2TREmqwInUEIvCsK6l9WnTsyVF8cz_3EqcDRQR5d5cWzEd0LbpEuwLP7LW-IsrmCRUSA98aU4Irt3Al-Ipf0cRONjM91iYuTVbHuv4oGDm9dlC3s8ZBrpCbByzkn2p2Tm6lKlgMntsQWX9NMDvRLou-hUB3JoYMm8z3cig"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Sidebar: Object Tree & Models -->
+<aside class="w-72 border-r border-primary/20 flex flex-col bg-background-light dark:bg-background-dark">
+<div class="flex border-b border-primary/10">
+<button class="flex-1 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-primary text-primary">Models</button>
+<button class="flex-1 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-primary transition-colors">Object Tree</button>
+</div>
+<div class="flex-1 overflow-y-auto sidebar-scroll p-4 space-y-4">
+<div class="space-y-2">
+<h3 class="text-[10px] font-bold text-primary uppercase tracking-widest px-2">Project Files</h3>
+<!-- Model Item: ARC -->
+<div class="group flex items-center justify-between p-3 rounded-xl bg-primary/10 border border-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">apartment</span>
+<div>
+<p class="text-sm font-medium text-white">ARC_Main_V2.ifc</p>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-green-500/20 text-green-400">Architectural</span>
+</div>
+</div>
+<div class="flex gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-lg hover:text-primary">visibility</button>
+<button class="material-symbols-outlined text-lg hover:text-primary">target</button>
+</div>
+</div>
+<!-- Model Item: STR -->
+<div class="group flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">foundation</span>
+<div>
+<p class="text-sm font-medium text-slate-300">STR_Structure_B1.ifc</p>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400">Structural</span>
+</div>
+</div>
+<div class="flex gap-1 opacity-60">
+<button class="material-symbols-outlined text-lg hover:text-primary">visibility</button>
+<button class="material-symbols-outlined text-lg hover:text-primary">target</button>
+</div>
+</div>
+<!-- Model Item: MEP -->
+<div class="group flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">ac_unit</span>
+<div>
+<p class="text-sm font-medium text-slate-300">MEP_HVAC_L1.ifc</p>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400">Mechanical</span>
+</div>
+</div>
+<div class="flex gap-1 opacity-60">
+<button class="material-symbols-outlined text-lg hover:text-primary">visibility_off</button>
+<button class="material-symbols-outlined text-lg hover:text-primary">target</button>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-primary/10">
+<h3 class="text-[10px] font-bold text-primary uppercase tracking-widest px-2 mb-2">Layers</h3>
+<div class="space-y-1">
+<div class="flex items-center gap-2 px-2 py-1.5 text-xs text-slate-400 hover:text-white cursor-pointer">
+<span class="material-symbols-outlined text-sm">check_box</span>
+<span>Floors &amp; Slabs</span>
+</div>
+<div class="flex items-center gap-2 px-2 py-1.5 text-xs text-slate-400 hover:text-white cursor-pointer">
+<span class="material-symbols-outlined text-sm">check_box</span>
+<span>Walls &amp; Columns</span>
+</div>
+<div class="flex items-center gap-2 px-2 py-1.5 text-xs text-slate-400 hover:text-white cursor-pointer">
+<span class="material-symbols-outlined text-sm">check_box_outline_blank</span>
+<span>Furniture &amp; Fixtures</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-primary/20 bg-primary/5">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2.5 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+                    Upload IFC
+                </button>
+</div>
+</aside>
+<!-- Center 3D Viewport -->
+<section class="flex-1 relative bg-slate-900 overflow-hidden">
+<!-- 3D View Background Replacement -->
+<div class="absolute inset-0 bg-gradient-to-br from-background-dark to-slate-800 flex items-center justify-center">
+<div class="w-full h-full opacity-40 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/30 via-transparent to-transparent"></div>
+<!-- Abstract 3D Model Representation -->
+<div class="relative w-3/4 h-3/4 border border-primary/10 rounded-xl overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&amp;w=1600&amp;auto=format&amp;fit=crop')] bg-cover bg-center grayscale contrast-125" data-alt="Abstract 3D architectural wireframe of a modern building facade"></div>
+<div class="absolute inset-0 bg-primary/5 mix-blend-overlay"></div>
+</div>
+</div>
+<!-- Stats Overlay -->
+<div class="absolute top-4 left-4 p-3 rounded bg-background-dark/80 backdrop-blur-md border border-primary/20 text-[10px] space-y-1 font-mono text-primary/80">
+<p>TRIANGLES: 1,420,582</p>
+<p>OBJECTS: 12,404</p>
+<p>FPS: 60.0</p>
+<div class="h-1 w-full bg-primary/20 mt-1">
+<div class="h-full w-3/4 bg-primary"></div>
+</div>
+</div>
+<!-- Floating Ribbon Toolbar -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 px-2 py-1.5 bg-background-dark/90 backdrop-blur-xl border border-primary/30 rounded-2xl flex items-center gap-1 shadow-2xl">
+<button class="p-2.5 rounded-xl hover:bg-primary/20 text-white transition-colors flex flex-col items-center gap-1" title="Orbit">
+<span class="material-symbols-outlined">orbit</span>
+</button>
+<button class="p-2.5 rounded-xl hover:bg-primary/20 text-white transition-colors flex flex-col items-center gap-1" title="Pan">
+<span class="material-symbols-outlined">pan_tool</span>
+</button>
+<div class="w-px h-8 bg-primary/20 mx-1"></div>
+<button class="p-2.5 rounded-xl hover:bg-primary/20 text-white transition-colors flex flex-col items-center gap-1" title="Preset Views">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2.5 rounded-xl hover:bg-primary/20 text-white transition-colors flex flex-col items-center gap-1" title="Section Box">
+<span class="material-symbols-outlined">vertical_split</span>
+</button>
+<button class="p-2.5 rounded-xl hover:bg-primary/20 text-white transition-colors flex flex-col items-center gap-1" title="Measure">
+<span class="material-symbols-outlined">straighten</span>
+</button>
+<div class="w-px h-8 bg-primary/20 mx-1"></div>
+<button class="p-2.5 rounded-xl bg-primary/20 text-primary transition-colors flex flex-col items-center gap-1" title="Screenshot">
+<span class="material-symbols-outlined">photo_camera</span>
+</button>
+</div>
+<!-- View Cube/Compass -->
+<div class="absolute bottom-8 right-8 w-24 h-24 bg-background-dark/60 rounded-full border border-primary/20 flex items-center justify-center group cursor-move">
+<div class="relative w-16 h-16 transform rotate-45 border-2 border-primary/40 flex items-center justify-center">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-white -rotate-45">N</span>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-500 -rotate-45">S</span>
+<div class="w-full h-px bg-primary/20"></div>
+<div class="h-full w-px bg-primary/20 absolute"></div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Properties & Data -->
+<aside class="w-80 border-l border-primary/20 flex flex-col bg-background-light dark:bg-background-dark">
+<div class="flex border-b border-primary/10">
+<button class="flex-1 py-3 text-[10px] font-bold uppercase tracking-tight border-b-2 border-primary text-primary">Properties</button>
+<button class="flex-1 py-3 text-[10px] font-bold uppercase tracking-tight text-slate-500 hover:text-primary transition-colors">Pset</button>
+<button class="flex-1 py-3 text-[10px] font-bold uppercase tracking-tight text-slate-500 hover:text-primary transition-colors">Validation</button>
+</div>
+<div class="p-4 border-b border-primary/10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xs font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+                        Element Info
+                    </h3>
+<span class="text-[10px] text-primary/60 font-mono">ID: 418290</span>
+</div>
+<label class="flex items-center bg-primary/5 rounded border border-primary/20 px-2 py-1.5 mb-2">
+<span class="material-symbols-outlined text-xs text-primary mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-[11px] w-full p-0" placeholder="Filter parameters..." type="text"/>
+</label>
+</div>
+<div class="flex-1 overflow-y-auto sidebar-scroll">
+<table class="w-full text-left text-[11px]">
+<thead class="bg-primary/5 sticky top-0">
+<tr>
+<th class="px-4 py-2 font-bold text-primary border-b border-primary/10">Property</th>
+<th class="px-4 py-2 font-bold text-primary border-b border-primary/10">Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Name</td>
+<td class="px-4 py-3 text-white">Wall-Standard:Ext:300mm</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Global ID</td>
+<td class="px-4 py-3 text-white font-mono">2$p8w_E9X4qO5_Wz</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Material</td>
+<td class="px-4 py-3 text-white">Concrete - Cast in Situ</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Volume</td>
+<td class="px-4 py-3 text-white">4.82 m³</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Area</td>
+<td class="px-4 py-3 text-white">16.07 m²</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Load Bearing</td>
+<td class="px-4 py-3"><span class="px-1.5 py-0.5 rounded bg-primary/20 text-primary">TRUE</span></td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-4 py-3 text-slate-400">Phase</td>
+<td class="px-4 py-3 text-white">New Construction</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 grid grid-cols-2 gap-2 border-t border-primary/20 bg-primary/5">
+<button class="flex items-center justify-center gap-2 border border-primary/40 hover:bg-primary/10 text-primary py-2 rounded font-bold text-xs transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+                    Edit
+                </button>
+<button class="flex items-center justify-center gap-2 border border-primary/40 hover:bg-primary/10 text-primary py-2 rounded font-bold text-xs transition-colors">
+<span class="material-symbols-outlined text-sm">ios_share</span>
+                    Export
+                </button>
+</div>
+</aside>
+</main>
+<!-- Bottom Status Bar -->
+<footer class="h-6 bg-primary dark:bg-primary/20 border-t border-primary/30 flex items-center justify-between px-4 text-[10px] text-white">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> Viewer Ready</span>
+<span class="text-white/60">Project: G_CENTRAL_P_01</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">cloud_done</span> Sync: 2m ago</span>
+<span class="font-mono">Lat: 40.7527° N, Lon: 73.9772° W</span>
+</div>
+</footer>
+</body></html>
